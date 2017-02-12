@@ -9,7 +9,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  * @author Juan Manuel Romero
  */
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping({"/","/homepage"})
 public class HomeController {
 
     @RequestMapping(method = GET)
