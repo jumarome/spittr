@@ -16,6 +16,8 @@
         <spring-version>4.0.7.RELEASE</spring-version>
         <junit-version>4.12</junit-version>
         <commons-lang-version>3.1</commons-lang-version>
+        <mockito-version>1.9.5</mockito-version>
+        <h2-version>1.4.182</h2-version>
     </properties>
 
     <dependencies>
@@ -45,6 +47,14 @@
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang-version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2-version}</version>
+        </dependency>
+        
+      
         
         <!--Provided Dependencies-->
         <dependency>
@@ -76,7 +86,29 @@
             <scope>test</scope>
         </dependency>
         
-        
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <scope>test</scope>
+            <version>2.44.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.opera</groupId>
+            <artifactId>operadriver</artifactId>
+            <scope>test</scope>
+            <version>1.5</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-remote-driver</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <build>
@@ -90,6 +122,15 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>  
+            
+                           
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>  
+                <configuration>
+                    <filename>${project.build.finalName}.war</filename>
+                </configuration>                    
+            </plugin>
         </plugins>
     </build>
 
